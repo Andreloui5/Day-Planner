@@ -1,3 +1,5 @@
+//Add document.ready callback?
+
 //Empty array for things to do:
 let thingsToDo = [];
 // create event when save buttton is clcked
@@ -32,6 +34,7 @@ function populate() {
 // change the color of the 'time block section' depending of the the current time
 //use an each statement
 
+function updateTime () {
     $(".textarea").each(function(j, item) {
     let calendarTime = $(this).attr("data-val");
     //if moment (downgraded to hour) = inex, then make color red
@@ -48,9 +51,13 @@ function populate() {
         //color is normal/white (.past)
         $(this).addClass("past");
     }
-})
+    })
 
+    //display the current day and time to DOM
+    $("#currentDay").text(moment().format('LLLL'));
 
+}
 
-//display the current day and time to DOM
-$("#currentDay").text(moment().format('LLLL'));
+setInterval(function(){
+    updateTime()
+}, 1000);
